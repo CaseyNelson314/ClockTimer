@@ -1,0 +1,31 @@
+###########################################
+# Syntax Coloring Map ClockTimer
+###########################################
+
+###########################################
+# Datatypes	(KEYWORD1)
+###########################################
+
+ClockTimer	KEYWORD1
+
+###########################################
+# Methods and Functions	(KEYWORD2)
+###########################################
+
+ClockOut	KEYWORD2
+ClickOut	KEYWORD2
+ClockCycleSet	KEYWORD2
+ClockReset	KEYWORD2
+PwmOut		KEYWORD2
+PwmUnprocessed	KEYWORD2
+PwmIllumi	KEYWORD2
+CallFunc	KEYWORD2
+CallStop	KEYWORD2
+CallStart	KEYWORD2
+MicrosSet	KEYWORD2
+
+#######################################
+# Constants (LITERAL1)
+#######################################
+
+DEF_ClockTimer_H	LITERAL1
