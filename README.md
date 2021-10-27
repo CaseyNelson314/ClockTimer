@@ -26,9 +26,9 @@ ClockReset        クロックをリセットする
 ClickOut          設定周期になった時,瞬間的に1になる
 CountOut          周期に達した数をカウントする
 CountSet          カウント上限を設定
-PwmOut            0からpwm上昇上限まで上昇する(設定周期間)
-PwmUnprocessed    0から設定周期まで上昇する(設定周期間)
-PwmIllumi         0からpwm上昇上限まで上昇したのち0まで降下する(設定周期間)
+PwmOut            0からpwm上昇上限まで上昇する
+PwmUnprocessed    0から設定周期まで上昇する
+PwmIllumi         0からpwm上昇上限まで上昇したのち0まで降下する
 CallFunc          設定周期になったら()内の関数を実行する
 CallStop          関数の呼び出しを停止する
 CallStart         関数の呼び出しを再開する
