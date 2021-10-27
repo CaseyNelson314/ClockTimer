@@ -17,7 +17,7 @@ class ClockTimer {
     unsigned long Time;
     unsigned long Timesub;
     unsigned long ClockCycle;
-    long COUNTUP;  //
+    long COUNTUP;
     long CountLimit;
     int  SetPwm;
     bool Call;
