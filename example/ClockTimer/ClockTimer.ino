@@ -26,7 +26,6 @@ ClockTimer T1(1000);
 ClockTimer T2(2000);
 ClockTimer T3(1000, 500);
 ClockTimer T4(500);
-ClockTimer T5(1500);
 
 void call() {
   Serial.print("call");                Serial.print("\t");
