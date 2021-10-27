@@ -16,6 +16,8 @@ ClockOut	KEYWORD2
 ClickOut	KEYWORD2
 ClockCycleSet	KEYWORD2
 ClockReset	KEYWORD2
+CountSet	KEYWORD2
+CountOut	KEYWORD2
 PwmOut		KEYWORD2
 PwmUnprocessed	KEYWORD2
 PwmIllumi	KEYWORD2

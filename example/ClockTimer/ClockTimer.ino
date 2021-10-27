@@ -26,6 +26,7 @@ ClockTimer T1(1000);
 ClockTimer T2(2000);
 ClockTimer T3(1000, 500);
 ClockTimer T4(500);
+ClockTimer T5(1500);
 
 void call() {
   Serial.print("call");                Serial.print("\t");
@@ -33,6 +34,7 @@ void call() {
 
 void setup() {
   Serial.begin(115200);
+  T3.CountSet(10);
 }
 
 void loop() {
@@ -41,6 +43,7 @@ void loop() {
   Serial.print(T2.ClockOut());       Serial.print("\t");
   Serial.print(T2.PwmIllumi());      Serial.print("\t");
   Serial.print(T3.PwmOut());         Serial.print("\t");
+  Serial.print(T3.CountOut());       Serial.print("\t");
   T4.CallFunc(call);  //関数呼び出し
   Serial.println();
   delay(10);
