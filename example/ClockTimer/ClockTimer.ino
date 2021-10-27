@@ -9,6 +9,8 @@
   ClickOut        設定周期になった時,瞬間的に1になる
   ClockCycleSet   設定周期を途中で変更
   ClockReset      クロックをリセットする
+  CountOut        周期に達した数をカウントする
+  CountSet        カウント上限を設定
   PwmOut          0からpwm上昇上限まで上昇する(設定周期間)
   PwmUnprocessed  0から設定周期まで上昇する(設定周期間)
   PwmIllumi       0からpwm上昇上限まで上昇したのち0まで降下する(設定周期間)
