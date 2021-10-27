@@ -17,10 +17,13 @@ class ClockTimer {
     unsigned long Time;
     unsigned long Timesub;
     unsigned long ClockCycle;
+    long COUNTUP;  //
+    long CountLimit;
+    int  SetPwm;
     bool Call;
     bool Output;
     bool TimerSerect;
-    int SetPwm;
+    bool CountSerect;
 
 
   public:
@@ -32,8 +35,8 @@ class ClockTimer {
       bool select = 0;
       Time = TimerSerect ? micros() : millis();
       if (Time - Timesub > ClockCycle) {
-        Timesub = Time;
-        select  = 1;
+        Timesub = Time; select   = 1;
+        if (CountSerect) COUNTUP >= CountLimit ? COUNTUP = 0 : COUNTUP++;
       }
       return select;
     }
@@ -43,16 +46,24 @@ class ClockTimer {
       return Output;
     }
 
+    void CountSet(long COUNTLIMIT) {
+      CountSerect = 1; CountLimit = COUNTLIMIT;
+    }
+    long CountOut() {
+      ClickOut();
+      return COUNTUP;
+    }
+
     unsigned long PwmOut() {
       ClickOut();
       return (Time - Timesub) * SetPwm / ClockCycle;
     }
-    
+
     unsigned long PwmUnprocessed() {
       ClickOut();
       return Time - Timesub;
     }
-    
+
     unsigned long PwmIllumi() {
       ClickOut();
       long out = SetPwm - (Time - Timesub) * SetPwm * 2 / ClockCycle;
@@ -62,11 +73,11 @@ class ClockTimer {
     void CallFunc(void(*CALLFUNC)()) {
       if (ClickOut() * !Call) CALLFUNC();
     }
-    
+
     void CallStop() {
       Call = 1;
     }
-    
+
     void CallStart() {
       Call = 0;
     }
@@ -74,14 +85,13 @@ class ClockTimer {
     void ClockCycleSet(unsigned long CLOCKCYCLE) {
       ClockCycle = CLOCKCYCLE;
     }
-    
+
     void MicrosSet() {
       TimerSerect = 1;
     }
 
     void ClockReset() {
-      Timesub = Time;
-      Output  = 0;
+      Timesub = Time; Output  = 0;
     }
 };
 #endif
