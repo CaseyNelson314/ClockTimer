@@ -39,6 +39,7 @@ CountOut関数を使うにはCountSet関数の引数でカウント上限を指�
 ```
 # example
 ```
+//PwmIllumi関数の使用例
 #include <ClockTimer.h>
 ClockTimer Clock1(1120, 200);
 ClockTimer Clock2(2320, 200);
@@ -71,7 +72,4 @@ void loop() {
   }
   Serial.println();
 }
-```
-```
-
 ```
