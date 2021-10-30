@@ -19,7 +19,7 @@ class ClockTimer {
     unsigned long ClockCycle;
     long COUNTUP;  //
     long CountLimit;
-    int  SetPwm;
+    long SetPwm;
     bool Call;
     bool Output;
     bool TimerSerect;
@@ -35,7 +35,7 @@ class ClockTimer {
       bool select = 0;
       Time = TimerSerect ? micros() : millis();
       if (Time - Timesub > ClockCycle) {
-        Timesub = Time; select   = 1;
+        Timesub = Time; select = 1;
         if (CountSerect) COUNTUP >= CountLimit ? COUNTUP = 0 : COUNTUP++;
       }
       return select;
