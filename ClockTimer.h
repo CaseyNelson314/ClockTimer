@@ -19,7 +19,7 @@ class ClockTimer {
     unsigned long ClockCycle;
     long COUNTUP;
     long CountLimit;
-    int  SetPwm;
+    long SetPwm;
     bool Call;
     bool Output;
     bool TimerSerect;
