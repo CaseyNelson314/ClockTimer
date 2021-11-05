@@ -5,10 +5,8 @@
         @date   2021/10/26
 */
 
+#pragma once
 #include <Arduino.h>
-
-#ifndef DEF_ClockTimer_H
-#define DEF_ClockTimer_H
 
 class ClockTimer {
 
@@ -17,7 +15,7 @@ class ClockTimer {
     unsigned long Time;
     unsigned long Timesub;
     unsigned long ClockCycle;
-    long COUNTUP;  //
+    long COUNTUP;
     long CountLimit;
     long SetPwm;
     bool Call;
@@ -94,4 +92,3 @@ class ClockTimer {
       Timesub = Time; Output  = 0;
     }
 };
-#endif
