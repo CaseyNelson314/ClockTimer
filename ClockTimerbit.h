@@ -5,10 +5,8 @@
         @date   2021/10/31
 */
 
+#pragma once
 #include <Arduino.h>
-
-#ifndef DEF_ClockTimer_H
-#define DEF_ClockTimer_H
 
 class ClockTimer {
 
@@ -90,4 +88,3 @@ class ClockTimer {
       bitWrite(flagdata, 1, 0);
     }
 };
-#endif
