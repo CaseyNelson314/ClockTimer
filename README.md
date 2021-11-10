@@ -1,9 +1,9 @@
 # ClockTimer Library
 ```
 疑似的にタイマーを増やし出力できます
-オブジェクトごとに周期を設定し出力できるため、delay等を使う必要がありません
-millisまたはmicros関数を使うためTimer0の周波数変更には対応してません
-ClcokTimerbit.hはbit関数を使用しており,3byteメモリを節約できます
+オブジェクトごとに周期を設定し出力できるため、delayを使う必要がありません
+millis,micros関数を使うためTimer0の周波数変更には非対応
+ClcokTimerbit.hはbit関数を使用しているため,3byteメモリを節約できます(カス)
 ```
 # Data
 ```
@@ -36,7 +36,7 @@ MicrosSet         Timerをmillisからmicrosに変更する 周期(ms)→(μs)
 ```
 CountOut関数を使うにはCountSet関数の引数でカウント上限を指定する必要があります
 指定した数になった後0にリセットされカウントがリスタートします
-遅延によってオブジェクトごとのクロックがずれるため周期をそろえて使用することは非推奨です
+遅延によってオブジェクトごとのクロックがずれるため周期をそろえて使用することは非推奨
 ```
 # example
 ```
@@ -71,6 +71,6 @@ void loop() {
   for (int i = 0; i < 3; i++) {
     Serial.print(LedPow[i]); Serial.print("\t");
   }
-  Serial.println();
+  Serial.println("YAH");
 }
 ```
