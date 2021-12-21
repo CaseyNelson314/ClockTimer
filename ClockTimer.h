@@ -4,10 +4,8 @@
         @author CaseyNelson314
         @date   2021/10/26
 */
-
 #pragma once
 #include <Arduino.h>
-
 class ClockTimer {
 
   private:
@@ -33,7 +31,7 @@ class ClockTimer {
       bool select = 0;
       Time = TimerSerect ? micros() : millis();
       if (Time - Timesub > ClockCycle) {
-        Timesub = Time; select   = 1;
+        Timesub = Time; select = 1;
         if (CountSerect) COUNTUP >= CountLimit ? COUNTUP = 0 : COUNTUP++;
       }
       return select;
