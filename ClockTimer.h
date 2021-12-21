@@ -5,88 +5,62 @@
         @date   2021/10/26
 */
 #pragma once
-#include <Arduino.h>
+
+#define MICROS 0
+#define MILLIS 1
+
 class ClockTimer {
-
   private:
+    long clockCycle;
+    int pwmLimit;
+    bool clickData;
+    bool toggleData;
+    bool isMillis = 1;
+    unsigned long lastTime;
+    unsigned long time;
 
-    unsigned long Time;
-    unsigned long Timesub;
-    unsigned long ClockCycle;
-    long COUNTUP;
-    long CountLimit;
-    long SetPwm;
-    bool Call;
-    bool Output;
-    bool TimerSerect;
-    bool CountSerect;
-
-
-  public:
-
-    ClockTimer(unsigned long SetClockCycle): ClockCycle(SetClockCycle), SetPwm(255) {}
-    ClockTimer(unsigned long SetClockCycle, unsigned int PwmWideSet): ClockCycle(SetClockCycle), SetPwm(PwmWideSet) {}
-
-    bool ClickOut() {
-      bool select = 0;
-      Time = TimerSerect ? micros() : millis();
-      if (Time - Timesub > ClockCycle) {
-        Timesub = Time; select = 1;
-        if (CountSerect) COUNTUP >= CountLimit ? COUNTUP = 0 : COUNTUP++;
+    void Update() {
+      time = isMillis ? millis() : micros();
+      if (time - lastTime > clockCycle) {
+        clickData = 1;
+        toggleData ^= 1;
+        lastTime = time;
       }
-      return select;
+    }
+  public:
+    ClockTimer(long CLOCK_CYCLE, int PWM_LIMIT = 255): clockCycle(CLOCK_CYCLE), pwmLimit(PWM_LIMIT) {}
+
+
+    bool GetClick() {
+      Update();
+      bool returnClick = clickData;
+      clickData = 0;
+      return returnClick;
+    }
+    
+    bool GetToggle() {
+      Update();
+      return toggleData;
+    }
+    
+    long GetPwm() {
+      Update();
+      return (time - lastTime) * pwmLimit / clockCycle;
+    }
+    
+    long GetIllumination() {
+      Update();
+      long returnData = pwmLimit - (time - lastTime) * pwmLimit * 2 / clockCycle;
+      return pwmLimit - abs(returnData);
     }
 
-    bool ClockOut() {
-      if (ClickOut())Output = !Output;
-      return Output;
+    void SetTimerType(bool type) {
+      isMillis = type;
     }
-
-    void CountSet(long COUNTLIMIT) {
-      CountSerect = 1; CountLimit = COUNTLIMIT;
-    }
-    long CountOut() {
-      ClickOut();
-      return COUNTUP;
-    }
-
-    unsigned long PwmOut() {
-      ClickOut();
-      return (Time - Timesub) * SetPwm / ClockCycle;
-    }
-
-    unsigned long PwmUnprocessed() {
-      ClickOut();
-      return Time - Timesub;
-    }
-
-    unsigned long PwmIllumi() {
-      ClickOut();
-      long out = SetPwm - (Time - Timesub) * SetPwm * 2 / ClockCycle;
-      return SetPwm - abs(out);
-    }
-
-    void CallFunc(void(*CALLFUNC)()) {
-      if (ClickOut() * !Call) CALLFUNC();
-    }
-
-    void CallStop() {
-      Call = 1;
-    }
-
-    void CallStart() {
-      Call = 0;
-    }
-
-    void ClockCycleSet(unsigned long CLOCKCYCLE) {
-      ClockCycle = CLOCKCYCLE;
-    }
-
-    void MicrosSet() {
-      TimerSerect = 1;
-    }
-
+    
     void ClockReset() {
-      Timesub = Time; Output  = 0;
+      clickData = toggleData = 0;
+      lastTime = time;
     }
+
 };
